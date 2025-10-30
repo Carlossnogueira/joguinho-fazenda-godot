@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhc4e35vden61"]
+
+[ext_resource type="PackedScene" uid="uid://4sxfklodirip" path="res://cenario_grana.tscn" id="1_tr6oq"]
+[ext_resource type="PackedScene" uid="uid://ngjf43bivybm" path="res://fazendeira.tscn" id="2_m7tbw"]
+[ext_resource type="Texture2D" uid="uid://co08hqdrsuwt1" path="res://assets/items&objects/Crop_Spritesheet.png" id="3_rrtif"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cuts"]
+atlas = ExtResource("3_rrtif")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emcp4"]
+atlas = ExtResource("3_rrtif")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep5lw"]
+atlas = ExtResource("3_rrtif")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpj0s"]
+atlas = ExtResource("3_rrtif")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwsrf"]
+atlas = ExtResource("3_rrtif")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlig8"]
+atlas = ExtResource("3_rrtif")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrbya"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cuts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emcp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep5lw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpj0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwsrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlig8")
+}],
+"loop": true,
+"name": &"tomate",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ommbi"]
+size = Vector2(14, 13)
+
+[node name="principal" type="Node2D"]
+
+[node name="cenario_grana" parent="." instance=ExtResource("1_tr6oq")]
+
+[node name="fazendeira" parent="cenario_grana" instance=ExtResource("2_m7tbw")]
+position = Vector2(406, 215)
+
+[node name="Camera2D" type="Camera2D" parent="cenario_grana/fazendeira"]
+zoom = Vector2(3, 3)
+
+[node name="tomate" type="Area2D" parent="."]
+position = Vector2(292, 215)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="tomate"]
+sprite_frames = SubResource("SpriteFrames_xrbya")
+animation = &"tomate"
+autoplay = "tomate"
+frame_progress = 0.44398636
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tomate"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ommbi")
