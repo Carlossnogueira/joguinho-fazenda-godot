@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dhc4e35vden61"]
+[gd_scene load_steps=24 format=4 uid="uid://dhc4e35vden61"]
 
 [ext_resource type="PackedScene" uid="uid://4sxfklodirip" path="res://cenario_grana.tscn" id="1_tr6oq"]
 [ext_resource type="PackedScene" uid="uid://ngjf43bivybm" path="res://fazendeira.tscn" id="2_m7tbw"]
@@ -57,7 +57,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ommbi"]
-size = Vector2(14, 13)
+size = Vector2(17, 15.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrbya"]
 atlas = ExtResource("5_ep5lw")
@@ -123,6 +123,9 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_emcp4"]
+radius = 10.049875
+
 [node name="principal" type="Node2D"]
 
 [node name="cenario_grana" parent="." instance=ExtResource("1_tr6oq")]
@@ -147,7 +150,7 @@ animation = &"tomate"
 frame_progress = 0.44398636
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomate"]
-position = Vector2(0, 0.5)
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_ommbi")
 
 [node name="flor_agua" type="AnimatedSprite2D" parent="."]
@@ -155,7 +158,7 @@ position = Vector2(295, 264)
 sprite_frames = SubResource("SpriteFrames_rjysx")
 animation = &"agua"
 autoplay = "agua"
-frame_progress = 0.61843383
+frame_progress = 0.0914276
 
 [node name="segura_informações" type="CanvasLayer" parent="."]
 
@@ -169,6 +172,16 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_font_sizes/font_size = 29
 text = "Semente tomate:"
 
+[node name="sementes" type="Area2D" parent="."]
+position = Vector2(427, 216)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sementes"]
+position = Vector2(-3, 0)
+shape = SubResource("CircleShape2D_emcp4")
+
 [connection signal="body_entered" from="tomate" to="tomate" method="_on_body_entered"]
+[connection signal="body_exited" from="tomate" to="tomate" method="_on_body_exited"]
+[connection signal="body_entered" from="sementes" to="cenario_grana/fazendeira" method="_on_sementes_body_entered"]
 
 [editable path="cenario_grana/fazendeira"]

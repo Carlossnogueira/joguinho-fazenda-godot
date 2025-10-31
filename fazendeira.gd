@@ -30,3 +30,7 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.play("andando_tras")
 	if Input.is_action_just_pressed("ui_right"):
 		$AnimatedSprite2D.play("andando_frente")
+
+
+func _on_sementes_body_entered(body: Node2D) -> void:
+	Dados.semente += 1
