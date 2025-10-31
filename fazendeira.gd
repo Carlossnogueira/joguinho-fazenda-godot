@@ -5,6 +5,7 @@ const SPEED = 100.0
 # const JUMP_VELOCITY = -400.0
 
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -22,5 +23,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		$AnimatedSprite2D.play("parado")
 
 	move_and_slide()
+	
+	if Input.is_action_just_pressed("ui_left"):
+		$AnimatedSprite2D.play("andando_tras")
+	if Input.is_action_just_pressed("ui_right"):
+		$AnimatedSprite2D.play("andando_frente")
